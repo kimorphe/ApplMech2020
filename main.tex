@@ -27,13 +27,10 @@
 \pagestyle{empty}
 %
 \title{
-	不飽和多孔質体中の物質拡散に関する\\数値解析的研究
-}
-%
+	超音波計測に基づく花崗岩中の表面波伝播特性に関する研究
+}%
 \endtitle{
-	%Numerical Study on the Material Diffusion in Unsaturated Porous Media 
-	%Numerical Study on the Mass Diffusion in Unsaturated Porous Media 
-	A NUMERICAL STUDY ON THE MASS DIFFUSION \\IN UNSATURATED POROUS MEDIA 
+A STUDY ON THE PROPAGATION CHARACTERISTICS OF SURFACE WAVES IN A GRANITE BASED ON ULTRASONIC MEASUREMENT
 }
 %
 % emailアドレスのフォントをタイプライター体にしたい方は次行をアンコメント
@@ -41,12 +38,13 @@
 % emailアドレスを公開される方は，
 %% \thanks{○○○○○○\email{your_name@foo.ac.jp}}のようにしてください．
 %
-\author{木本　和志\thanks{正会員 博士(工学) 岡山大学 環境生命科学研究科
-(〒700-8530 岡山県岡山市北区3丁目1番地1号)
-\email{kimoto@cc.okayama-u.ac.jp}}
+\author{木本　和志\thanks{正会員 博士(工学) 岡山大学 環境生命科学研究科(〒700-8530 岡山県岡山市北区3丁目1番地1号)\email{kimoto@cc.okayama-u.ac.jp}}・
+岡野　蒼\thanks{学生会員 岡山大学環境生命科学研究科 (〒700-8530 岡山県岡山市北区3丁目1番地1号)}・
+斎藤　隆泰\thanks{正会員 博士(工学)群馬大学大学院理工学府 環境創生部門(〒376-8515 群馬県桐生市天神町 1-5-1)}・
+佐藤　忠信\thanks{正会員 博士(工学)神戸学院大・現代社会学部 (〒000-0000 *******************************)}・
+松井　裕哉\thanks{正会員 ●●(☓☓)日本原子力研究開発機構・幌延深地層研究センター(〒098-3224 北海道天塩郡幌延町北進432番地2)}
 }
-%
-\endauthor{Kazushi KIMOTO}
+\endauthor{Kazushi KIMOTO, Aoi OKANO, Takahiro SAITOH, Hiroya MATSUI and Tadanobu SATO}
 %
 \abstract{
 \small
@@ -68,21 +66,7 @@ pore water distribution, random walk, anomalous diffusion}
 %
 \endabstract{% Yes blank line
 \normalsize
-This study develops a numerical technique for the analysis of mass diffusion in unsaturated porous media. 
-In the present approach, a periodic porous solid model is generated numerically by packing arbitrary 
-shaped particles into the unit cell. 
-%
-The pore water of predetermined amount is then distributed over 
-the pore space so that the total interfacial free energy is minimized. Finally, a random walk particle 
-tracking is implemented on the rectangular grid generated uniformly over the fluid phase domain. 
-To characterize the macroscopic diffusion, an overall diffusion constant and the abnormality of the 
-macro diffusion are evaluated quantitatively based on the temporal evolution of random walkers' mean-square 
-displacement. With the numerical methods, the effects of such parameters as the degree of saturation, 
-solid phase packing structure, and the solid particle size distribution on the macro diffusion characteristics 
-are investigated. It was found, as the results, that the origin of the anomalous diffusion is the 
-tortuosity of the diffusion paths,
-%randomness of the packing structure, 
-while the grain size distribution has more to do with the magnitude of the macro diffusion constant.  
+This study investigates the propagation characteristics of high frequency surface wave in a granite block by ultrasonic measurement. In the experiment, a surface wave field excited by a line-focus transducer is scanned finely over a rectangular aperture with a laser Doppler vibrometer. From the measured waveforms, the spatial distribution of Fourier phase is reconstructed, and the structure of the wave front configuration is investigated. Due to the heterogeneity of the granite, we find the fluctuation of the wave front measured by the distribution of spatial gradient of phase. The intensity of the fluctuation is quantified as a local wavenumber vector. As the result it is found that the granite sample can be characterized by a stochastic wave number whose probability density is frequency dependent, asymmetric and non-Gaussian with a finite support. 
 }
 %
 % \titlepagecontrol{1}
@@ -99,14 +83,16 @@ while the grain size distribution has more to do with the magnitude of the macro
 \section{はじめに}
 	\input{1_intro}
 	\vspace{-2mm}
-\section{2次元拡散問題の設定}
+\section{超音波計測実験}
 	%\vspace{-4mm}
 	\input{2_method}
-\section{数値解析モデル}
+\section{位相分布の再構成}
 	\input{3_model}
-\section{数値解析結果と考察}
+\section{データ解析結果と考察}
 	\input{4_results}
 \section{まとめ}
+本研究では，花崗岩中を伝播する表面波を計測して位相の空間分布を求め，波数ベクトルの確率密度分布を推定した．その結果，媒体の不均質性によって波面が屈曲すること，波数ベクトルの確率密度分布は周波数に強く依存すること，高周波になるにつれ確率密度がブロードになること，波数は非対称かつ有限な幅の非ガウス的な確率分布に従うことが明らかとなった．今後は，波数ベクトルの空間分布構造とその周波数依存性，岩石物性との関係について調べることが，工学的な応用を展開する上での課題となる．
+
 本研究では，2次元不飽和多孔質体モデルを用いたランダムウォークによる拡散解析を行い，
 間隙構造や水分量が分子拡散挙動に与える影響について調べた．この方法では，
 任意の形状と粒径分布をもつ固相粒子で構成された多孔質体を扱うことができ，
