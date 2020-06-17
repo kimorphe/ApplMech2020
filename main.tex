@@ -1,0 +1,259 @@
+﻿%%#!platex
+%
+% Example of Japanese Paper of JSCE
+% for LaTeX2e users
+%
+% revised on 4/25/2014
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% もし jis フォントメトリックを使う場合は，以下をアンコメントしてください．
+% \DeclareFontShape{JY1}{mc}{m}{n}{<-> s * jis}{}
+% \DeclareFontShape{JY1}{gt}{m}{n}{<-> s * jisg}{}
+%
+\documentclass{jsce}
+%
+\usepackage{epic,eepic,eepicsup}
+\usepackage{graphicx,multicol}
+\usepackage{setspace}
+%  amsを使う方は以下をアンコメントしてください．
+%\usepackage{amssymb,amsmath}
+% 英語はサポートしているかどうか不明
+% \inenglish
+% 学会サンプルに times とあるので指定しておきます
+\usepackage{times}
+%
+\finalversion
+\pagestyle{empty}
+%
+\title{
+	不飽和多孔質体中の物質拡散に関する\\数値解析的研究
+}
+%
+\endtitle{
+	%Numerical Study on the Material Diffusion in Unsaturated Porous Media 
+	%Numerical Study on the Mass Diffusion in Unsaturated Porous Media 
+	A NUMERICAL STUDY ON THE MASS DIFFUSION \\IN UNSATURATED POROUS MEDIA 
+}
+%
+% emailアドレスのフォントをタイプライター体にしたい方は次行をアンコメント
+% \emailstyle{\ttfamily}
+% emailアドレスを公開される方は，
+%% \thanks{○○○○○○\email{your_name@foo.ac.jp}}のようにしてください．
+%
+\author{木本　和志\thanks{正会員 博士(工学) 岡山大学 環境生命科学研究科
+(〒700-8530 岡山県岡山市北区3丁目1番地1号)
+\email{kimoto@cc.okayama-u.ac.jp}}
+}
+%
+\endauthor{Kazushi KIMOTO}
+%
+\abstract{
+\small
+本研究は，不飽和多孔質体における物質拡散挙動を調べることを目的に，ランダムウォークをベースとした
+数値拡散解析手法の開発を行ったものである．ここで提案する方法では，
+固相粒子を充填して作成した周期多孔質構造のユニットセルにおいて，
+モンテカルロ法を用いて界面エネルギーが極小値をとるように間隙水を配置する．
+作成した数値不飽和多孔質媒体は，液相を拡散媒体としたランダムウォークによる
+物質拡散解析に用いる．ランダムウォーク・シミュレーションで得られた
+拡散粒子変位の時刻歴から，拡散係数と平均２乗変位に関する時間のべき指数を評価し，
+多孔質媒体が示すマクロな拡散特性を定量化する．本稿では，以上の方法で２次元拡散解析を行い，
+飽和度や，固相粒子の形状と粒径分布が不飽和多孔質体のマクロ拡散に与える影響を調べた．
+その結果，主として粒径分布が拡散係数の大きさに，固相粒子の充填構造が異常拡散の程度に
+寄与することが明らかとなった．
+}
+%
+\keywords{unsaturated porous media， Monte Carlo method， 
+pore water distribution, random walk, anomalous diffusion}
+%
+\endabstract{% Yes blank line
+\normalsize
+This study develops a numerical technique for the analysis of mass diffusion in unsaturated porous media. 
+In the present approach, a periodic porous solid model is generated numerically by packing arbitrary 
+shaped particles into the unit cell. 
+%
+The pore water of predetermined amount is then distributed over 
+the pore space so that the total interfacial free energy is minimized. Finally, a random walk particle 
+tracking is implemented on the rectangular grid generated uniformly over the fluid phase domain. 
+To characterize the macroscopic diffusion, an overall diffusion constant and the abnormality of the 
+macro diffusion are evaluated quantitatively based on the temporal evolution of random walkers' mean-square 
+displacement. With the numerical methods, the effects of such parameters as the degree of saturation, 
+solid phase packing structure, and the solid particle size distribution on the macro diffusion characteristics 
+are investigated. It was found, as the results, that the origin of the anomalous diffusion is the 
+tortuosity of the diffusion paths,
+%randomness of the packing structure, 
+while the grain size distribution has more to do with the magnitude of the macro diffusion constant.  
+}
+%
+% \titlepagecontrol{1}
+%
+%\receivedate{2019．7．19}
+% \receivedate{January 15， 1991}
+%
+% \def\theenumi{\alph{enumi}}  % もし enumerate 最初の箇条を (a) と
+% \def\labelenumi{(\theenumi)} % したい場合・・・
+%
+\begin{document}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{はじめに}
+	\input{1_intro}
+	\vspace{-2mm}
+\section{2次元拡散問題の設定}
+	%\vspace{-4mm}
+	\input{2_method}
+\section{数値解析モデル}
+	\input{3_model}
+\section{数値解析結果と考察}
+	\input{4_results}
+\section{まとめ}
+本研究では，2次元不飽和多孔質体モデルを用いたランダムウォークによる拡散解析を行い，
+間隙構造や水分量が分子拡散挙動に与える影響について調べた．この方法では，
+任意の形状と粒径分布をもつ固相粒子で構成された多孔質体を扱うことができ，
+間隙構造や間隙率，飽和度や粒子表面の濡れ性を自由に設定したモデルを用いて
+拡散解析を行うことができる．また，ランダムウォークによるシミュレーション結果から，
+一般化された拡散係数と，平均2乗変位のべき指数を求めることで，異常拡散の程度も
+定量的に評価することができる．本稿では，上記の方法により4種類の多孔質構造モデルに
+ついて拡散シミュレーションを行った結果，以下に示す知見を得ることができた．
+\begin{itemize}
+\item
+	多孔質体では，飽和度と間隙率に応じて拡散経路が制限され，
+	マクロ拡散係数は液相の拡散係数よりも小さくなる．ただしその低減率は，
+	間隙形状の影響を受ける．
+\item
+	拡散経路が屈曲することにより，マクロスケールでの拡散は遅い異常拡散となり，
+	通常の拡散方程式には従わなくなる．
+\item
+	固相粒子のアスペクト比が0.4$\sim$1.0程度であれば，
+	粒子形状が拡散挙動に与える影響は小さい．
+\item
+	均一な粒径の固相粒子が不規則に充填された多孔質構造では，
+	多分散系の固相粒子で構成された多孔質構造に比べて小さなマクロ拡散係数をもつ．
+\item
+	%平均2乗変位のべき指数で表される異常拡散の程度は，
+	%飽和度に対して単調に減少する．	
+	平均2乗変位のべき指数$\alpha$は飽和度に対して単調に増加するが，
+	通常拡散を意味する1を超えることはない．すなわち，異常拡散の程度は飽和度に対して単調に減少する．
+\item
+	異常拡散の程度は，固相粒子配置が不規則で飽和度が低い場合に大きい．
+	一方，粒径分布や粒子形状が異常拡散の程度に当てる影響は顕著でない．
+	このことは，拡散経路の屈曲が異常拡散の主たる原因であることを示唆する．
+\end{itemize}
+以上は，間隙スケールの形状を考慮した拡散解析を行うことで，不飽和多孔質体に
+おける拡散挙動の理解を深めるために有用な情報が得られることを示している．\\
+\hspace{\parindent}
+今後は，同様な方法を３次元問題に適用し，実験データの解釈に利用することが課題となる．
+そのためには，各計算過程（固相粒子のパッキング，間隙水配置の決定，ランダムウォーク）
+の効率化を行うことも必要となる．また，本手法を間隙水の移流を考慮した拡散解析に
+拡張し，機械的分散のメカニズムを調べること，拡散物質の吸着や拡散物質の
+反応を考慮すること，ランダムウォークベースのアップスケーリング手法を考案することも
+今後の重要な課題であると考えられる．
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\lastpagecontrol[2cm]{13.7cm}
+\vspace{0mm}
+\begin{thebibliography}{99}
+%\vspace{5mm}
+\begin{spacing}{1.175}
+\bibitem{JAEA}
+	日本原子力研究開発機構 福島研究開発部門 福島研究開発拠点 福島環境安全センター:  
+	福島における放射性セシウムの環境動態研究の現状（平成30年度版），JAEA-Research,
+	2019-002,DOI:10.11484/jaea-research-2019-002,2019.
+\bibitem{NUMO}
+	原子力発電環境整備機構:地層処分事業の安全確保(2010年度版)-確かな技術による安全な地層処分の実現のために-, NUMO-TR-11-01, 2011.
+\bibitem{Bear1}
+	Bear,J.:Dynamics of fluids in porous media,Dover,1972.
+\bibitem{Bear2}
+	Bear,J.and Bachmat,Y.:Introduction to modeling of transport phenomena in porous media, Kluwer Academic Publishers,1990.
+\bibitem{Nakano}
+	中野政詩:土の物質移動学，東京大学出版会， 1991．
+\bibitem{Fujinawa}
+	藤縄克之:環境地下水学，共立出版，2010．
+\bibitem{Rubin}
+	Rubin,S., Dror,I. and Berkowitz, B.: Experimental and 
+		modeling analysis of coupled non-Fickian transport and 
+		sorption in natural soils,Journal of Contaminant Hydrology, vol.132,pp.28-36,2012.
+\newpage
+\bibitem{Masuda}
+	Masuda,A.,Ushida,K. and Okamoto, T. :Direct observation of spatiotemporal dependence of anomalous diffusion in 
+		inhomogeneous 
+		fluid by sampling-volume-controlled fluorescence correlation spectroscopy, Physical Review E, vol.72,pp.060101-1-4,2005.
+\bibitem{Non_Fick_review}
+	Berkowitz,B., Cortis,A. and Scher,A.:Modeling non-Fickian transport in geological formations as a continuous time random walk, Reviews of Geophysics,vol.44,pp.1-49,2006.
+\bibitem{Upscaling_review}
+	Frippiat,C.C. and Holeyman,A.E.:A comparative review of upscaling methods for solute transport in heterogeneous porous media, Journal of Hydrology, vol.262,pp.150-176,2008.
+%\bibitem{Cuadros}
+%	Cuadros, J. : Clay as sealing material in nuclear waste repositories, %Geology Today, Vol.24, No.3, pp.99-103, 2008.
+\bibitem{Liang}
+	Liang,Z.,Ioannidis,M.and Chatzis,I.:Permeability and electrical conductivity of porous media from 3D stochastic replicas of the microstructure, Chemical Engineering Science,vol.55,pp.5247-5262,2000. 
+\bibitem{chalk_model}
+	Talkudar,M.S., Torsaeter, O. and Howard, J.J.:
+	Stochastic reconstruction, 3D characterization and network modeling of chalk, Journal of Petroleum Science and Engineering, 
+	vol.35, pp.1-21,2002.
+\bibitem{Digital_porous}
+	Kainourgiakis,M.E.,Kikkinides,E.S.,Galani,Charalambop-oulou,G.C. and Stubos,A.K.:
+	Digitally reconstructed porous media: Transport and sorption properties,
+	Transport in Porous Media, Vol.58, pp.43-62, 2005.
+\bibitem{Kim}
+	Kim,D.H., Young,J.K., Lee, J.-S. and Yun, T.S..:Thermal and electrical response of unsaturated hydropholic and hydrophobic granular materials,
+	 Geotechnical Testing Journal,Vol.34,No.5,pp.1-9,2011.
+\bibitem{Narsilio}
+	Narsilio,G.A., Kress,J. and Yun, T. S.:
+	Characterisation of conduction phenomena in soils at particle-scale: 
+	Finite element analyses in conjunction with syhtetic 3D imaging, Computers and Geotechnics, vol.38, pp.828-836, 2010.
+\bibitem{Berkowitz}   
+        Berkowitz,B. and Hansen,P.D.:A Numerical Study of the Distribution of 	Water in Partially Saturated Porous Rock, 
+	Transport in Porous Media, Vol.45, pp.303-319, 2001.
+\bibitem{MC}  
+        Lu, N.,Zeidman, B. D., Lusk, M. T., Willson, C. S. and Wu, D. T.: 
+	A Monte Carlo paradigm for capillarity in porous media， Geophysical Research Letters, Vol.37, L23402, 2010.
+\bibitem{comp_phys}  
+	Metropolis,N.,Rosenbluth,A.W.,Rosenbluth,M. N.,Teller,A. H. and	Teller,E.:
+		Equation of state calculations by fast computing machines, 
+	J.Chem.Phys., 21(6), pp.1087-1092, 1953.
+\bibitem{SurfChem}
+	Butt, H.-J., Graf, K. and Kappl, M., 
+	"Physics and chemistry of interfaces", WILEY-VCH, 2006.
+\bibitem{Kimoto}
+	中島 唯一，木本 和志，河村 雄行:間隙水分布を考慮した不飽和多孔質体の熱伝導解析， 
+	土木学会論文集A2, Vol.74, No.2, pp.I105-I114，2018．
+\bibitem{Toda}
+	戸田 盛和，物理学30講シリーズ 分子運動30講，朝倉書店，1996.
+\bibitem{Rwk_textbook}
+	Klaffter, J., and Sololov,I.M.,秋元 琢磨(訳): 
+	ランダムウォークはじめの一歩，共立出版， 2018．
+\bibitem{Gennes}
+ドゥジェンヌ，ブロシェール ヴィアール，ケレ：表面張力の物理学， 吉岡書店， 2003．
+%\bibitem{Terada}
+%	寺田 賢二郎， 菊池 昇: 均質化法入門， 丸善株式会社， 2003．
+%\bibitem{Zohdi}
+%        Zohdi, T. I. and Wriggers, P. : An Intruduction to Computational Micromechanics,Springer, 2008.
+%\bibitem{Iwasaki}
+%	岩崎 佳介， 木本 和志， 市川 康明: 含水した砂質土の熱応答特性に関する実験および数値解析，  土木学会論文集A2， Vol．70， No．2，  ppI115-I124， 2014．
+%\bibitem{Yun}
+%	Yun, T. S., and Evans, T. M. : Three-dimensional random walk network model %for thermal conductivity in pariculate materials, 
+%	Computers and Geotechnics, vol.37, pp.991-998,2010.
+\end{spacing}
+\end{thebibliography}
+\vspace{-5mm}
+\begin{flushright}
+	\small
+	\bf{ (Received July 19, 2019)\\
+	(Accepted December 24, 2019)}
+\end{flushright}
+%\lastpagesettings
+\newpage
+%\lastpagecontrol[1cm]{13.7cm}
+\lastpagecontrol[1cm]{25.7cm}
+\end{document}
+
+%\begin{minipage}[c]{13.7cm}
+%\end{minipage}
+%\lastpagecontrol[0cm]{13.7cm}
+%\newpage
+%\begin{multicols}{1}
+%-------------------------------------------------
+%-------------------------------------------------
+%\end{multicols}
+
