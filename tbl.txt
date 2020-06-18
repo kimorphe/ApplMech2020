@@ -1,0 +1,8 @@
+\begin{table}[htb]
+  \caption{}
+  \begin{tabular}{lcrr}
+    メニュー & サイズ & 値段 & カロリー \\
+    牛皿 & 特盛 & 1,000円 & 350 kcal
+  \end{tabular}
+\label{tbl:}
+\end{table}
