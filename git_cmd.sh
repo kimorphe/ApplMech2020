@@ -6,6 +6,7 @@ git add git_cmd.sh
 git add *.tex
 git add *.sty
 git add *.cls
+git add *.txt
 git add Figs/*.svgz
 # Visualization
 git add Src/*.py
