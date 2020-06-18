@@ -1,0 +1,129 @@
+﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+実験で得られた波形データの全体を，
+\begin{equation}
+	{\cal D}=\left\{
+		a(x,y,t)\left| (x,y,t)\in {\cal R}\times [0,T_d] \right.
+	\right\}
+	\label{eqn:dataset}
+\end{equation}
+と表す．ここに，$T_d$は計測時間範囲を意味する．
+図-\ref{fig:fig4}は，データセット$\cal D$から同一の時刻$t$における振幅を取り出して作成した
+鉛直振動場のスナップショットを，$t=21\mu$秒，$t=23\mu$秒について示したものである．
+上段は花崗岩供試体，下段は均質材であるアルミニウムブロックを用いて計測した結果を示し，
+いずれもオシロスコープで計測された振幅値[mV]でをカラ−表示したものである．
+均質なアルミニウム供試体の場合，若干のゆらぎはあるものの，概ね波形を保ったまま
+右($x>0$)方向に超音波が伝播し，鉛直方向に伸びる直線的な波面がはっきりと観察されている．
+一方，強い不均質性を持つ花崗岩供試体では，アルミニウムと同程度の速度で
+波動場が右方向へ進展していることは分かるものの，振幅のゆらぎが非常に大きく，
+初動の到達位置は明確でなく，大きな振幅を持つ波動の通過後も，振動が継続する様子が
+見られる．
+ここで，$a(x,y,t)$の時間$t$に関するフーリエ変換を
+\begin{equation}
+	A(x,y,\omega)=\int_{-\infty}^{\infty} a(x,y,t)e^{i\omega t} dt
+	\label{eqn:Fourier_t}
+\end{equation}
+とし，フーリエ変換$A(x,y,\omega)$の位相を
+\begin{equation}
+	\phi(x,y,\omega)=\arg\left\{ A(x,y,\omega) \right\}
+	\label{eqn:phase}
+\end{equation}
+と表す．なお，$\omega$は角周波数を表し，位相$\phi$は$A$と
+\begin{equation}
+	A=\left| A \right|e^{i\phi}
+	\label{eqn:phi2A}
+\end{equation}
+の関係にあり，$\phi$の範囲は
+\begin{equation}
+	\phi \in (-\pi,\pi]
+	\label{eqn:dom_phi}
+\end{equation}
+に取る．図\ref{fig:fig5}は，$\cal D$からFFTによって求めた位相$\phi(x,y,\omega)$
+の受信領域$\cal R$における空間分布を，周波数0.7MHzと1.0MHzについて示したものである．
+同一の位相となる点を結ぶ曲線は波面を表し，アルミニウム供試体の場合，上下にほぼ直線的
+に伸びる波面群が現れていることが分かる．0.7MHzの場合，$x=0$付近で若干波面が屈曲
+している用に見える。これは，送信周波数帯域の下限に近い周波数のため，
+ノイズの影響が1.0MHzの場合よりも強く現れるためと考えられる．
+これに対して花崗岩供試体では，いずれの周波数においても，場所によらず波面は著しく屈曲
+している．また，波面は$y$方向へ伸びる傾向は観察でき，配向性を示すことは明らかな
+ものの，特定の個々の波面がどのような曲線を描いているかを視認することは困難である。
+なお，図-\ref{fig:fig4}に示されるように，超音波は$x>0$の方向に進行している．
+そのため，観測領域全体でみたとき，位相は$x>0$方向に増加傾向を示す。
+ただし，ここでは位相の範囲を式(\ref{eqn:dom_phi})のようにしていることに注意が必要である。
+その結果，位相は$-\pi$から$\pi$の間で増加し，$\pi$を超えたところで負の側に折り返される．
+これにより，アルミニウム供試体に対する結果では$x$方向に鋸刃状の変動を繰返すパターンが
+赤と青の縞模様となって示されている．
+\begin{figure}
+\begin{center}
+\includegraphics[clip,scale=0.5]{Figs/snapshot.eps}
+\caption{
+	振動速度分布のスナップショット.
+}
+\label{fig:fig4}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.5]{Figs/phase_xy.eps}
+	\caption{位相の空間分布.}
+	\label{fig:fig5}
+\end{center}
+\end{figure}
+\begin{equation}
+	\fat{k}= (k_x,k_y)= \frac{1}{2\pi} \nabla \phi (x,y,\omega)
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	{\rm Prob} [k](\omega), \ \ 
+	{\rm Prob} [\theta](\omega)
+	\label{eqn:}
+\end{equation}
+\subsection{分散関係}
+波動場の分散挙動を調べるために，波数-周波数スペクトルを求める．
+波数-周波数スペクトルは$x$および$y$方向のフーリエ変換により
+\begin{equation}
+	\hat{\hat {A}}(\xi_x,\xi_y,\omega) =
+	\iint A(x,y,\omega)e^{-i(\xi_x x +\xi_y y)}dxdy
+	\label{eqn:Fkk_spctr}
+\end{equation}
+で与えられる．ここでは、主たる波動の伝播方向は$x$方向のため，
+\begin{equation}
+	\hat{\hat {A}}(\xi_x,0,\omega) =
+	\iint A(x,y,\omega)e^{-i\xi_x x}dxdy
+	\label{eqn:Fk_spctr}
+\end{equation}
+を見ることで，$x$方向への分散関係を調べる．
+以下では，$\xi_x=2\pi k_x$と置き，
+式(\ref{eqn:Fk_spctr})の波数−周波数スペクトルを
+\begin{equation}
+	\bar{A}(k_x,\omega)=\hat{\hat {A}}(\xi_x,0,\omega)
+	\label{eqn:def_Ak}
+\end{equation}
+と書き，$k_x$を$x$方向の波数と呼ぶ．
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.32]{Figs/fkplot_Al.eps}
+	\caption{(a)波数−周波数スペクトル.(b)伝播速度と周波数の関係. (アルミニウム供試体)}
+	\label{fig:}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.32]{Figs/fkplot_bar2.eps}
+	\caption{(a)波数−周波数スペクトル.(b)伝播速度と周波数の関係. (花崗岩供試体)}
+	\label{fig:}
+\end{center}
+\end{figure}
+% メモ
+%Fig.4に周波数0.4,0.6,0.9および1.2MHzの波形成分に対する位相の空間分布を示す．
+%相対的に低周波の0.4と0.6MHzでは，等位相線(波面)がy軸方向に伸びる1次元的な構造を示している．
+%ただし，波面は屈曲して直線的ではない．一方，0.9および1.2MHzでは，y方向への位相の揺らぎが大きく，
+%平面波的な構造が見られない．Fig.5に，位相分布の勾配を中央差分で近似して求めた，
+%波数ベクトルkの確率密度分布を示す．Fig.5-(a)は，波数ベクトルの大きさkに関する，
+%(b)はx軸方向から測ったkの方向に関する確率密度を示している．(a)の図にあるように，k
+%の確率密度は非対称かつ有限な幅をもち，ガウス分布的でもない．また，周波数が大きく
+%なるにつれ分散が増加している．これは，波数と周波数の関係が確定的に定められないこと，
+%高周波になる程波動場の分散性が強まるが，波数の大きさは一定範囲に留まることを示している．
+%また，波数ベクトルは入射方向に配向するが，相対的に高周波の1.0MHｚと1.2MHzでは配向性が低下し，
+%伝搬経路の屈曲が強まることを示している．これら波数ベクトルの確率密度と周波数の関係を記述する
+%法則を見出すことは今後の課題だが，花崗岩のランダム媒体としてのモデル化においては，
+%このような波数ベクトルの特徴を反映する必要がある．

@@ -1,7 +1,7 @@
-\begin{figure}[h]
-	\begin{center}
-	\includegraphics[width=1.0\linewidth]{.eps} 
-	\end{center}
-	\caption{.} 
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.5]{Figs/.eps}
+	\caption{ }
 	\label{fig:}
+\end{center}
 \end{figure}
