@@ -8,6 +8,7 @@ git add *.sty
 git add *.cls
 git add *.txt
 git add Figs/*.svgz
+git add Figs/PNGs/*.py
 # Visualization
 git add Src/*.py
 # Makefile

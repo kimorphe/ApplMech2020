@@ -1,0 +1,157 @@
+﻿本節では，局所的な波数を定義し，その統計的な挙動から花崗岩中の
+波動伝播を特徴付け，伝播速度や到達時間のゆらぎを定量的に評価する
+ことを試みる．
+\subsection{局所波数ベクトル}
+フーリエ変換によって定義される波数$(\xi_x,\xi_y)$は，
+観測領域全体の変動を反映した大域的な量である．
+花崗岩中を伝播する波動は，各所で伝播方向や波長が変化するため，
+その空間変動を評価するには，局所的な波数を用いることがよりふさわしい．
+そこで，位相の勾配で与えらる局所的な波数ベクトル$\fat{k}=(k_x,k_y)$の
+分布を調べることにする．
+ただし，式(\ref{eqn:def_Phi})で与えられる位相$\Phi$は$\pm \pi$
+を挟んで跳躍がありそのままでは微分出来ない．
+そこで，微分可能な形にアンラップされた位相
+\begin{equation}
+	\phi=\arg A
+	\label{eqn:}
+\end{equation}
+を考え，この勾配として波数ベクトルを定義する。
+\begin{equation}
+	2\pi \fat{k}= 
+	2\pi (k_x,k_y)=
+	\left(
+		\frac{\partial \phi}{\partial x}
+		, \, 
+		\frac{\partial \phi}{\partial y} 
+	\right)
+	\label{eqn:}
+\end{equation}
+\subsection{数値計算方法}
+\begin{equation}
+	x_i=x_0+i \Delta x,\, y_j=y_0+j\Delta y
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	f_{i,j}=f(x_i,y_j)
+	\label{eqn:}
+\end{equation}
+$i=0,1,\dots N_x-1$, $j=0,\dots N_y-1$に対して．
+ここでは
+\begin{equation}
+	\Delta x=\Delta y=0.5{\rm mm}
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	N_x=41, N_y=61
+\end{equation}
+\begin{equation}
+	(x_0,y_0)=(0,-15){\rm mm}
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	2\pi (k_x)_{i+\frac{1}{2},j}
+	=
+	\left( \frac{\partial \phi }{\partial x}\right) _{i+\frac{1}{2},j}
+	\simeq 
+	\frac{\phi_{i+1,j}-\phi_{i,j}}{\Delta x}
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	\phi_{i+1,j}-\phi_{i,j}
+	=
+	\arg \left(\frac{ A_{i+1,j}}{A_{i,j}}\right)
+	=
+	{\rm Arg} \left(\frac{ A_{i+1,j}}{A_{i,j}} \right)
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	\left( k_x \right)_{i+\frac{1}{2},j} 
+	\simeq 
+	\frac{1}{2\pi \Delta x}
+	{\rm Arg} \left( \frac{ A_{i+1,j}}{A_{i,j}} \right)
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	\left( k_y \right)_{i,j+\frac{1}{2}} 
+	\simeq 
+	\frac{1}{2\pi \Delta y}
+	{\rm Arg} \left( \frac{ A_{i,j+1}}{A_{i,j}} \right)
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	\phi(x,y)=2\pi \int_{\Gamma} \fat{k}\cdot d\fat{s}
+	\label{eqn:}
+\end{equation}
+$\fat{x}_0=(0,y)$に対して，
+\begin{equation}
+	\phi(\fat{x})
+	=\min_{\left(\Gamma, \fat{x}_0\right)}
+	\int_\Gamma 2\pi \fat{k} \cdot d\fat{s}
+	\label{eqn:}
+\end{equation}
+ただし
+\begin{equation}
+	\fat{k}\cdot d\fat{s}\geq 0 \, {\rm on} \, \Gamma 
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	\fat{k}\cdot d\fat{s}
+	=
+	\left\{
+	\begin{array}{c}
+		\pm k_x \Delta x \\
+		\pm k_y \Delta y
+	\end{array}
+	\right.
+	\label{eqn:}
+\end{equation}
+
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.3]{Figs/pdf_kw_Al.eps}
+	\caption{波数ベクトルの(a)大きさと(b)方向の分布(アルミニウム供試体).}
+	\label{fig:fig8}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.3]{Figs/pdf_kw_bar.eps}
+	\caption{波数ベクトルの(a)大きさと(b)方向の分布(花崗岩供試体).}
+	\label{fig:fig9}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.8]{Figs/unwrap.eps}
+	\caption{波数ベクトルの積分経路$\Gamma$とその折れ線近似$\tilde \Gamma$のイメージ.}
+	\label{fig:fig12}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.4]{Figs/phi_R.eps}
+	\caption{アンラップした位相から計算した到達時間の空間分布. (a)アルミニウム供試体，(b)花崗岩供試体.いずれも周波数1.0MHzの結果.}
+	\label{fig:fig10}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.3]{Figs/tof_hist.eps}
+	\caption{到達時間の頻度分布. (a)アルミニウム供試体，(b)花崗岩供試体.}
+	\label{fig:fig11}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.5]{Figs/sigma_t.eps}
+	\caption{到達時間の標準偏差と伝播距離の関係. (a)アルミニウム供試体，(b)花崗岩供試体.}
+	\label{fig:fig11}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.5]{Figs/sigma_y.eps}
+	\caption{到達距離の標準偏差と伝播時間の関係. (a)アルミニウム供試体，(b)花崗岩供試体.}
+	\label{fig:fig11}
+\end{center}
+\end{figure}

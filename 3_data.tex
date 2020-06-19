@@ -16,28 +16,27 @@
 一方，強い不均質性を持つ花崗岩供試体では，アルミニウムと同程度の速度で
 波動場が右方向へ進展していることは分かるものの，振幅のゆらぎが非常に大きく，
 初動の到達位置は明確でなく，大きな振幅を持つ波動の通過後も，振動が継続する様子が
-見られる．
-ここで，$a(x,y,t)$の時間$t$に関するフーリエ変換を
+見られる．ここで，$a(x,y,t)$の時間$t$に関するフーリエ変換を
 \begin{equation}
-	A(x,y,\omega)=\int_{-\infty}^{\infty} a(x,y,t)e^{i\omega t} dt
+	A(x,y,\omega)=\int a(x,y,t)e^{i\omega t} dt
 	\label{eqn:Fourier_t}
 \end{equation}
 とし，フーリエ変換$A(x,y,\omega)$の位相を
 \begin{equation}
-	\phi(x,y,\omega)=\arg\left\{ A(x,y,\omega) \right\}
-	\label{eqn:phase}
+	\Phi(x,y,\omega)={\rm Arg}\left\{ A(x,y,\omega) \right\}
+	\label{eqn:def_Phi}
 \end{equation}
-と表す．なお，$\omega$は角周波数を表し，位相$\phi$は$A$と
+と表す．ここに，$\omega$は角周波数を表し，位相$\Phi$は$A$と
 \begin{equation}
-	A=\left| A \right|e^{i\phi}
+	A=\left| A \right|e^{i\Phi}
 	\label{eqn:phi2A}
 \end{equation}
-の関係にあり，$\phi$の範囲は
+の関係にあり，$\Phi$は
 \begin{equation}
-	\phi \in (-\pi,\pi]
+	-\pi < \Phi \leq \pi
 	\label{eqn:dom_phi}
 \end{equation}
-に取る．図\ref{fig:fig5}は，$\cal D$からFFTによって求めた位相$\phi(x,y,\omega)$
+となるように取る．図\ref{fig:fig5}は，$\cal D$からFFTによって求めた位相$\Phi(x,y,\omega)$
 の受信領域$\cal R$における空間分布を，周波数0.7MHzと1.0MHzについて示したものである．
 同一の位相となる点を結ぶ曲線は波面を表し，アルミニウム供試体の場合，上下にほぼ直線的
 に伸びる波面群が現れていることが分かる．0.7MHzの場合，$x=0$付近で若干波面が屈曲
@@ -64,7 +63,8 @@
 \begin{figure}
 \begin{center}
 	\includegraphics[clip,scale=0.5]{Figs/phase_xy.eps}
-	\caption{位相の空間分布.}
+	\caption{位相$\Phi(x,y,\omega)$の空間分布.周波数0.7および1.0MHz
+	の結果．}
 	\label{fig:fig5}
 \end{center}
 \end{figure}
@@ -78,39 +78,74 @@
 	\label{eqn:}
 \end{equation}
 \subsection{分散関係}
-波動場の分散挙動を調べるために，波数-周波数スペクトルを求める．
-波数-周波数スペクトルは$x$および$y$方向のフーリエ変換により
+波動場の分散性の有無を調べるために波数-周波数スペクトルを求める．
+波数-周波数スペクトルは，$x$および$y$方向のフーリエ変換により
 \begin{equation}
 	\hat{\hat {A}}(\xi_x,\xi_y,\omega) =
 	\iint A(x,y,\omega)e^{-i(\xi_x x +\xi_y y)}dxdy
 	\label{eqn:Fkk_spctr}
 \end{equation}
-で与えられる．ここでは、主たる波動の伝播方向は$x$方向のため，
+で与えられる．ここでは、主たる波動の伝播方向が$x$方向であるため，
 \begin{equation}
 	\hat{\hat {A}}(\xi_x,0,\omega) =
 	\iint A(x,y,\omega)e^{-i\xi_x x}dxdy
 	\label{eqn:Fk_spctr}
 \end{equation}
-を見ることで，$x$方向への分散関係を調べる．
-以下では，$\xi_x=2\pi k_x$と置き，
-式(\ref{eqn:Fk_spctr})の波数−周波数スペクトルを
+を見ることで$x$方向に関する分散関係について検討する。
+以下では，$\xi_x=2\pi k_x$と置き，式(\ref{eqn:Fk_spctr})の波数−周波数スペクトルを
 \begin{equation}
 	\bar{A}(k_x,\omega)=\hat{\hat {A}}(\xi_x,0,\omega)
 	\label{eqn:def_Ak}
 \end{equation}
-と書き，$k_x$を$x$方向の波数と呼ぶ．
+と書く．
+図-\ref{fig:fig6}と図-\ref{fig:fig7}に，データ$\cal D$からFFTによって計算した
+波数−周波数スペクトル$\bar{A}$を示す．
+図-\ref{fig:fig6}はアルミブロックの，図\ref{fig:fig7}は花崗岩供試体に対する結果を
+表す．
+各々，(a)は横軸を周波数$f(=\omega/2\pi)$，縦軸を波数$k_x$として
+$\left| \bar{A}\right|$をカラ−表示したものを表し，(b)はカーブフィッティングによって
+推定した位相速度と群速度の周波数依存性を表している．アルミニウム供試体に
+対する結果では，波数と周波数の間にははっきりとした直線的な関係があり，
+特に1.0から2.5MHz程度の周波数成分を持つ波が観測波形に含まれていることが分かる。
+一方,花崗岩供試体では,大きな振幅を持つ成分は0.7から1.2MHz程度と狭い帯域に集中し,
+波数と周波数の関係は概ね直線的と推定されるが,アルミニウム供試体の結果程明確な傾向は
+読み取れない.$x$方向の位相速度を$c$，群速度を$c_g$とすれば，
+\begin{equation}
+	c=\frac{\omega}{k_x}
+	\label{eqn:def_c}
+\end{equation}
+\begin{equation}
+	c_g=\frac{d\omega}{dk_x}
+	\label{eqn:def_cg}
+\end{equation}
+で与えられる．そこで，各周波数において$|\bar A|$のピークを
+与える波数を特定して$c$を求めると，図-\ref{fig:fig7}および図\ref{fig:fig8}の
+(b)に示したような結果が得られる．さらに，波数スペクトルのピークを与える
+$(\omega,k_x)$のデータを1次式，2次式で最小二乗法によりフィッテイングして，
+式(\ref{eqn:def_cg})より群速度を求めると，(b)のグラフに青と赤の直線で
+示したような結果が得られる．
+(a)の図に示した実線と破線はこれらの近似曲線を示したものである。
+アルミニウム供試体の場合，回帰式の次数による差はほとんど無く，
+波数と周波数は直線関係にあると結論できる．
+一方，花崗岩供試体の場合，フィッティング結果から得られる波数と周波数の関係は
+波数−周波数平面上では大差ないものの、その勾配を計算して群速度として見たときには，
+最大$\pm$0.3km/sと無視できない差がある．つまり、この場合$k_x-\omega$の関係は1次式，
+2次式いずれとも言い難く，平均的な位相速度の見積もりには有用なものの，
+$k_x$と$\omega$の関係を一意に定めることには無理があると言える．
+言い換えれば，花崗岩を透過する波の挙動を調べるにあたり，簡単な周波数分散の関係で表現出来ない
+ことを前提として議論をする必要があることを示唆している．
 \begin{figure}
 \begin{center}
 	\includegraphics[clip,scale=0.32]{Figs/fkplot_Al.eps}
 	\caption{(a)波数−周波数スペクトル.(b)伝播速度と周波数の関係. (アルミニウム供試体)}
-	\label{fig:}
+	\label{fig:fig6}
 \end{center}
 \end{figure}
 \begin{figure}
 \begin{center}
 	\includegraphics[clip,scale=0.32]{Figs/fkplot_bar2.eps}
 	\caption{(a)波数−周波数スペクトル.(b)伝播速度と周波数の関係. (花崗岩供試体)}
-	\label{fig:}
+	\label{fig:fig7}
 \end{center}
 \end{figure}
 % メモ
