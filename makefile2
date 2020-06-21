@@ -1,0 +1,41 @@
+main.pdf: main.dvi
+	dvipdfmx -p a4 main.dvi
+main.dvi: main.tex \
+	1_intro.tex 2_measurement.tex 3_data.tex 4_processing.tex \
+	Figs/samples.eps Figs/ut_setup.eps Figs/fig3.eps Figs/cod.eps \
+	Figs/snapshot.eps Figs/phase_xy.eps Figs/fkplot_Al.eps Figs/fkplot_bar2.eps \
+	Figs/pdf_kw_Al.eps Figs/pdf_kw_bar.eps Figs/phi_R.eps Figs/tof_hist.eps \
+	Figs/sigma_t.eps Figs/sigma_y.eps Figs/unwrap.eps Figs/tof1d.eps
+	platex main.tex
+Figs/samples.eps: Figs/samples.svgz
+	inkscape -D --export-filename=Figs/samples.eps Figs/samples.svgz 
+Figs/ut_setup.eps: Figs/ut_setup.svgz
+	inkscape -D --export-filename=Figs/ut_setup.eps Figs/ut_setup.svgz 
+Figs/fig3.eps: Figs/fig3.svgz
+	inkscape -D --export-filename=Figs/fig3.eps Figs/fig3.svgz  
+Figs/cod.eps: Figs/cod.svgz
+	inkscape -D --export-filename=Figs/cod.eps Figs/cod.svgz
+Figs/snapshot.eps: Figs/snapshot.svgz
+	inkscape -D --export-filename=Figs/snapshot.eps Figs/snapshot.svgz
+Figs/phase_xy.eps: Figs/phase_xy.svgz
+	inkscape -D --export-filename=Figs/phase_xy.eps Figs/phase_xy.svgz
+Figs/fkplot_Al.eps: Figs/fkplot_Al.svgz
+	inkscape -D --export-filename=Figs/fkplot_Al.eps Figs/fkplot_Al.svgz
+Figs/fkplot_bar2.eps: Figs/fkplot_bar2.svgz
+	inkscape -D --export-filename=Figs/fkplot_bar2.eps Figs/fkplot_bar2.svgz
+Figs/pdf_kw_Al.eps: Figs/pdf_kw_Al.svgz
+	inkscape -D --export-filename=Figs/pdf_kw_Al.eps Figs/pdf_kw_Al.svgz
+Figs/pdf_kw_bar.eps: Figs/pdf_kw_bar.svgz
+	inkscape -D --export-filename=Figs/pdf_kw_bar.eps Figs/pdf_kw_bar.svgz
+Figs/phi_R.eps: Figs/phi_R.svgz
+	inkscape -D --export-filename=Figs/phi_R.eps Figs/phi_R.svgz
+Figs/tof_hist.eps: Figs/tof_hist.svgz
+	inkscape -D --export-filename=Figs/tof_hist.eps Figs/tof_hist.svgz
+Figs/sigma_t.eps: Figs/sigma_t.svgz
+	inkscape -D --export-filename=Figs/sigma_t.eps Figs/sigma_t.svgz
+Figs/sigma_y.eps: Figs/sigma_y.svgz
+	inkscape -D --export-filename=Figs/sigma_y.eps Figs/sigma_y.svgz
+Figs/unwrap.eps: Figs/unwrap.svgz
+	inkscape -D --export-filename=Figs/unwrap.eps Figs/unwrap.svgz
+Figs/tof1d.eps: Figs/tof1d.svgz
+	inkscape -D --export-filename=Figs/tof1d.eps Figs/tof1d.svgz

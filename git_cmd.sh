@@ -13,6 +13,7 @@ git add Figs/PNGs/*.py
 git add Src/*.py
 # Makefile
 git add makefile
+git add makefile2
 
 git commit 
 git push -u origin master
