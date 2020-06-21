@@ -51,6 +51,8 @@ class tStats:
 if __name__=="__main__":
     fname="tstat.dat"
 
+    fsz=14
+
     Tf1=tStats()
     Tf2=tStats()
     Tf3=tStats()
@@ -66,49 +68,37 @@ if __name__=="__main__":
     ax=fig1.add_subplot(111)
     ax.grid(True)
 
-    #ax.plot(Tf1.tmax,-Tf1.ycod,"b-",label="alminium")
-    ax.plot(Tf1.tave,-Tf1.ycod,"b-",label="alminium")
-    #ax.plot(Tf2.tmax,-Tf2.ycod,"r-",label="bar")
-    ax.plot(Tf2.tave,-Tf2.ycod,"r-",label="bar")
-    #ax.plot(Tf3.tmax,-Tf3.ycod,"g-",label="core")
-    ax.plot(Tf3.tave,-Tf3.ycod,"g-",label="core")
-    #ax.plot(Tf.tave+Tf.tsig,-Tf.ycod,"--")
-    #ax.plot(Tf.tave-Tf.tsig,-Tf.ycod,"--")
-
-    #plt.legend()
-
-    fsz=14
-    ax.tick_params(labelsize=fsz)
-    ax.set_xlim([0,7])
-    ax.set_ylim([0,20])
-    ax.set_xlabel("mean travel time $\overline{T}_f$ [$\mu$s]",fontsize=fsz+2)
-    ax.set_ylabel("x [mm]",fontsize=fsz+2)
-
+    ax.plot(-Tf1.ycod, Tf1.tsig,"b-",label="alminium")
+    ax.plot(-Tf2.ycod, Tf2.tsig,"r-",label="bar")
+    ax.plot(-Tf3.ycod, Tf3.tsig,"g-",label="core")
 
     fig2=plt.figure()
     bx=fig2.add_subplot(111)
     bx.grid(True)
-    deg=2
-    Tf1.fit(deg)
-    Tf2.fit(deg)
-    Tf3.fit(deg)
+    bx.plot(-Tf1.ycod, Tf1.tsig/Tf1.tave,"b-",label="alminium")
+    bx.plot(-Tf2.ycod, Tf2.tsig/Tf2.tave,"r-",label="bar")
+    bx.plot(-Tf3.ycod, Tf3.tsig/Tf3.tave,"g-",label="core")
 
-    bx.plot(-Tf1.y_peak,-Tf1.c_peak,"b-",label="alminium")
-    bx.plot(-Tf1.y_ave,-Tf1.c_ave,"b--",label="alminium")
-    bx.plot(-Tf2.y_peak,-Tf2.c_peak,"r-",label="bar")
-    bx.plot(-Tf2.y_ave,-Tf2.c_ave,"r--",label="bar")
-    bx.plot(-Tf3.y_peak,-Tf3.c_peak,"g-",label="core")
-    bx.plot(-Tf3.y_ave,-Tf3.c_ave,"g--",label="core")
+
+    ax.tick_params(labelsize=fsz)
+    ax.set_xlim([0,20])
+    ax.set_ylim([0,0.8])
+    #ax.set_xlabel("$\overline{x}$ [mm]",fontsize=fsz+2)
+    ax.set_xlabel("$x$ [mm]",fontsize=fsz+2)
+    ax.set_ylabel("$\delta T_f$ [$\mu$s]",fontsize=fsz+2)
+
+
     bx.tick_params(labelsize=fsz)
     bx.set_xlim([0,20])
-    bx.set_ylim([2.5,3.5])
-    bx.set_ylabel("velocity [km/s]",fontsize=fsz+2)
-    bx.set_xlabel("x [mm]",fontsize=fsz+2)
+    bx.set_ylim([0,0.8])
+    #bx.set_xlabel("$\overline{x}$ [mm]",fontsize=fsz+2)
+    bx.set_xlabel("$x$ [mm]",fontsize=fsz+2)
+    bx.set_ylabel("$\delta T_f/\overline{T}_f$ ",fontsize=fsz+2)
 
     #plt.legend()
 
     plt.show()
 
-    fig1.savefig("tof1d.png",bbox_inches="tight")
-    fig2.savefig("vel1d.png",bbox_inches="tight")
+    fig1.savefig("delT_x.png",bbox_inches="tight")
+    fig2.savefig("delT_x_nrm.png",bbox_inches="tight")
 

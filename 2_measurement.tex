@@ -76,9 +76,33 @@
 この部分で試験片に鉛直動が加えられる．${\cal R}$はLDVでスキャンする波形観測領域を示す．
 $\cal R$は20mm$\times$30mmの矩形領域にとり，計測ピッチは$x$，$y$方向とも0.5mmとすることで，
 $\cal R$上の正方格子状に配置された観測点で計41×61＝2,501の供試体表面における鉛直動の時刻歴波形を取得した．
-以下では，位置$(x,y)$において観測した時刻歴波形を$a(x,y,t)$と表す．ただし，$t$は超音波の
-送信時刻を0とする経過時間を表す．$x,y$および$t$はいずれも離散変数だが，
-簡単のため連続変数として扱い，$a(x,y,t)$に関する微分や積分は，離散化して評価することを前提としたものと解釈する．
+ここで，観測点の$x$および$y$軸方向の間隔を，それぞれ$\Delta x,\Delta y$とすれば，
+$x$方向に$i$番目，$y$方向に$j$番目の観測点の座標$(x_i,\, y_j)$は
+\begin{equation}
+	(x_i,\, y_j)=(x_0+i\Delta x,\, y_0+j\Delta y)
+	\label{eqn:x_ij}
+\end{equation}
+と書くことができる．また，観測点全体がなす格子を${\cal G}$とすれば，
+\begin{equation}
+	{\cal G} = \left\{ 
+	(x_i,\, y_j)\left| i=0,\dots N_x, \, j=0,\dots N_y  \right.
+	\right\}
+	\label{eqn:Grid}
+\end{equation}
+と表される．ただし，$N_x$と$N_y$は$x$および$y$軸方向の観測点数を表し，
+格子点数や格子間隔は実際には
+\begin{equation}
+	\Delta x=\Delta y=0.5 {\rm mm}, \ \ N_X=41, \, N_y=61
+	\label{eqn:grid_prms}
+\end{equation}
+\begin{equation}
+	(x_0,y_0)=(0,-15){\rm mm}
+	\label{eqn:grid_corner}
+\end{equation}
+である．ここで，$t$を時間変数として，位置$(x,y)$において観測した時刻歴波形を
+$a(x,y,t)$と表す．以下では， 簡単のため$x,y$および$t$はいずれも
+連続変数として扱い，$a(x,y,t)$に関する微分や積分は，観測データを使って評価する
+際には，適宜離散化して評価する．
 \begin{figure}[t]
 \begin{center}
 \includegraphics[clip,scale=0.5]{Figs/cod.eps}

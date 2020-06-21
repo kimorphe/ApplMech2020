@@ -1,21 +1,26 @@
-﻿本節では，局所的な波数を定義し，その統計的な挙動から花崗岩中の
-波動伝播を特徴付け，伝播速度や到達時間のゆらぎを定量的に評価する
-ことを試みる．
+﻿本節では局所的な波数を定義し，その統計分布に基づいて花崗岩中の
+波動伝播挙動を調べることで，伝播速度と到達時間のゆらぎを定量的に評価する．
 \subsection{局所波数ベクトル}
-フーリエ変換によって定義される波数$(\xi_x,\xi_y)$は，
-観測領域全体の変動を反映した大域的な量である．
-花崗岩中を伝播する波動は，各所で伝播方向や波長が変化するため，
-その空間変動を評価するには，局所的な波数を用いることがよりふさわしい．
-そこで，位相の勾配で与えらる局所的な波数ベクトル$\fat{k}=(k_x,k_y)$の
-分布を調べることにする．
+フーリエ変換によって定義される波数$(\xi_x,\xi_y)$は， 観測領域全体の変動を反映した大域的な量である．
+花崗岩中を伝播する波動は，各所で伝播方向や波長が変化するため，その空間変動を評価するには
+局所的な波数を用いることがよりふさわしい．そこで，位相の勾配で与えらる局所的な波数ベクトル
+$\fat{k}=(k_x,k_y)$を新たに定義して，その確率的な分布を調べる．
 ただし，式(\ref{eqn:def_Phi})で与えられる位相$\Phi$は$\pm \pi$
-を挟んで跳躍がありそのままでは微分出来ない．
-そこで，微分可能な形にアンラップされた位相
+を挟んで跳躍があり，そのままでは微分出来ない点が現れる．
+そこで，着目点$\fat{x}=(x,y)$において微分可能となるように，アンラップされた位相$\phi$を
+考え，これを
 \begin{equation}
-	\phi=\arg A
+	\phi(\fat{x},\omega)=\arg\left\{  A(\fat{x},\omega) \right\}
+	\label{eqn:def_phi}
+\end{equation}
+と表す．$\phi$と$\Phi$の関係は
+\begin{equation}
+	\phi(x,\omega)=\Phi(\fat{x},\omega) + 2\pi n(\fat{x},\omega )
 	\label{eqn:}
 \end{equation}
-を考え，この勾配として波数ベクトルを定義する。
+である．ただし，$n$は$\fat{x}$において位相$\Phi$の跳躍を打ち消すように
+選ばれた整数である．
+$\phi$を用いて，位置に依存した波数ベクトルを次のように定義する。
 \begin{equation}
 	2\pi \fat{k}= 
 	2\pi (k_x,k_y)=
@@ -26,74 +31,169 @@
 	\right)
 	\label{eqn:}
 \end{equation}
-\subsection{数値計算方法}
-\begin{equation}
-	x_i=x_0+i \Delta x,\, y_j=y_0+j\Delta y
-	\label{eqn:}
-\end{equation}
+\subsection{波数ベクトルの計算方法}
+波数ベクトルをデータ$\cal D$を用いて数値的に評価する際には，次のようにして差分近似を行う．
+$\cal R$上の関数$f(x,y)$の，格子点$(x_i,\, y_j)$における値を
 \begin{equation}
 	f_{i,j}=f(x_i,y_j)
 	\label{eqn:}
 \end{equation}
-$i=0,1,\dots N_x-1$, $j=0,\dots N_y-1$に対して．
-ここでは
-\begin{equation}
-	\Delta x=\Delta y=0.5{\rm mm}
-	\label{eqn:}
-\end{equation}
-\begin{equation}
-	N_x=41, N_y=61
-\end{equation}
-\begin{equation}
-	(x_0,y_0)=(0,-15){\rm mm}
-	\label{eqn:}
-\end{equation}
+と表す．この表記を用い，$\phi$の$x$方向の偏微分を次のような中央差分で近似する．
 \begin{equation}
 	2\pi (k_x)_{i+\frac{1}{2},j}
 	=
 	\left( \frac{\partial \phi }{\partial x}\right) _{i+\frac{1}{2},j}
 	\simeq 
 	\frac{\phi_{i+1,j}-\phi_{i,j}}{\Delta x}
-	\label{eqn:}
+	\label{eqn:fd_x}
 \end{equation}
+式(\ref{eqn:fd_x})の最右辺分母の項は，
 \begin{equation}
 	\phi_{i+1,j}-\phi_{i,j}
 	=
 	\arg \left(\frac{ A_{i+1,j}}{A_{i,j}}\right)
-	=
-	{\rm Arg} \left(\frac{ A_{i+1,j}}{A_{i,j}} \right)
-	\label{eqn:}
 \end{equation}
+と書ける．$\Delta x$が十分に小さければ，
+\begin{equation}
+	\left| \phi_{i+1,j}-\phi_{i,j}\right| < \pi
+	\label{eqn:phi_bound}
+\end{equation}
+であると考えてく，その場合
+\begin{equation}
+	\arg \left(\frac{ A_{i+1,j}}{A_{i,j}}\right)
+	=
+	{\rm Arg}\left(\frac{ A_{i+1,j}}{A_{i,j}}\right)
+\end{equation}
+とできる．
+以上より，
 \begin{equation}
 	\left( k_x \right)_{i+\frac{1}{2},j} 
 	\simeq 
 	\frac{1}{2\pi \Delta x}
 	{\rm Arg} \left( \frac{ A_{i+1,j}}{A_{i,j}} \right)
-	\label{eqn:}
+	\label{eqn:kx_FD}
 \end{equation}
+となる．$y$方向への微分についても同様にして考えれば，$k_y$は
 \begin{equation}
 	\left( k_y \right)_{i,j+\frac{1}{2}} 
 	\simeq 
 	\frac{1}{2\pi \Delta y}
 	{\rm Arg} \left( \frac{ A_{i,j+1}}{A_{i,j}} \right)
-	\label{eqn:}
+	\label{eqn:ky_FD}
 \end{equation}
+で与えられることが分かる．$(x_i,y_j)$における波数ベクトル$\fat{k}_{i,j}$が
+必要となる場合には，
+\begin{eqnarray}
+	(k_x)_{i,j} &=&
+	\frac{1}{2}\left\{ (k_x)_{i+\frac{1}{2},j}+ (k_x)_{i-\frac{1}{2},j} \right\}
+	\label{eqn:} \\
+	(k_y)_{i,j} &=&
+	\frac{1}{2}\left\{ (k_y)_{i,j+\frac{1}{2}}+ (k_y)_{i,j-\frac{1}{2}} \right\}
+	\label{eqn:}
+\end{eqnarray}
+で代用する．
+\subsection{波数ベクトルの確率分布}
+花崗岩供試体の物性値にはランダムな不均質性があり、花崗岩供試体で計測された波形にも
+ランダムな変動が現れる．ランダム変動について確率的な特徴を見るために，
+ここでは波数ベクトルの頻度分布を求め，均質材での結果と比較する．
+いま，$\cal G$上で得られた観測量$g(\fat{x})$とし，その全体
+$\left\{ g(\fat{x}), \fat{x}\in {\cal G}) \right\}$
+について，適当な階級幅$\Delta g$でカウントした頻度分布を
+$P_{\cal G} [g;\Delta g]$と書き、
+"${\cal G}$で観測されたデータから得た$g$の階級幅$\Delta g$で評価した頻度分布"と読むことにする。
+なお，頻度分布は正規化されており，特に断りの無い限り
 \begin{equation}
-	\phi(x,y)=2\pi \int_{\Gamma} \fat{k}\cdot d\fat{s}
-	\label{eqn:}
+	\sum_{g} P_{\cal G}[g;\Delta g]=1
+	\label{eqn:normalize}
 \end{equation}
-$\fat{x}_0=(0,y)$に対して，
+であるとする．
+
+波数ベクトルの大きさと方向を
 \begin{equation}
-	\phi(\fat{x})
-	=\min_{\left(\Gamma, \fat{x}_0\right)}
-	\int_\Gamma 2\pi \fat{k} \cdot d\fat{s}
-	\label{eqn:}
+	k=\left| \fat{k} \right|=\sqrt{k_x^2+k_y^2},  \ \ 
+	\alpha = \tan^{-1} \left( \frac{k_y}{k_x} \right)
+	\label{eqn:kpol}
 \end{equation}
-ただし
+と表す。これらの正規化した頻度分布：
+\[
+	P_{\cal G}[k;\Delta k], \ \ 
+	P_{\cal G}[\alpha;\Delta \alpha]
+\]
+を図\ref{fig:fig8}と図\ref{fig:fig9}に示す。
+これらの図は、アルミニウム供試体、花崗岩供試体に対するものである。
+(a)は$k$の、(b)は$\alpha$の頻度分布を周波数との関係で示ししている。
+階級幅は$\Delta k=0.024$mm$^{-1}$, $\Delta \alpha=$7.2度である。
+図中の白の実線は各周波数における平均値を，破線は平均値$\pm$標準偏差
+を示したものである。
+アルミニウム供試体の結果を見ると，波数と周波数は0.2MHzから2.5MHz程度の
+帯域では明確な比例関係にあることがわかる。また、波数ベクトルの方向
+は、同じ周波数帯域において0度付近に集中しており，$x$軸方向に非常によく
+配向している様子が示されている
+ただし、2MHzを超える辺りからは0度に集中した分布はしているものの、
+$\alpha$の標準偏差はが大きくなっている。
+これは，2MHz程度以上の周波数からは、信号/雑音比が低下しはじめている
+ことを示している。以上のことを踏まえると、アルミニウム供試体では、
+2.5MHz程度までは波数と周波数が比例することから、進行波成分が観測されているが、
+2MHz以上はノイズの影響が次第に大きくなり，2.5MHz以上ではほとんど有意な信号成分が
+偉得ていないことがわかる。
+図\ref{fig:fig9}に示した花崗岩供試体の結果でも、波数と周波数の比例関係は
+見られるが、その範囲は0.6MHzから2.0MHz程度とアルミニウム供試体に比べて狭い。
+また、標準偏差は波数ベクトルの大きさ、向きともアルミニウムの場合に比べて
+大きく、高周波側に向けてほぼ一貫して増加する。波数ベクトルの方向について
+言えば、いずれの周波数でも配向の程度は均質材に比べて明らかに低く、
+2.5Mz近傍で標準偏差が約90度に達して飽和し，配向性が消失している。
+以上より、信号成分の含まれる周波数帯域は，大きくみてアルミニウム供試体では
+0.2〜2.5MHz, 花崗岩供試体で0.6から2.0MHzであると言える。
+このような情報は、波数-周波数スペクトルからは得ることができず、
+局所波数ベクトルの統計を見ることの一つの利点と言える。なお、ここで言う帯域とは、
+配向性を消失することなく、x方向へ伝播する波動が観測できる周波数範囲という
+意味であり、一定値以上の波動振幅の得られる帯域という意味ではない。
+花崗岩のような不均質媒体では、計測波形やその周波数スペクトルは複雑な形を
+しているため、振幅を基準にした議論は難しいことが多い。その点で、波数ベクトルの
+統計分布に基づく帯域の定義に従い、見るべき周波数範囲を定めることが
+より適切と考えられる。
+\subsection{到達時間関数}
+観測領域内の位置$\fat{x}$における波動は，$x=0$の側から伝播してくる.
+$x=0$から$\fat{x}\in {\cal R}$に波動が到達するために要する時間を
+$T_f(\fat{x},\omega)$とする.$T_f$を波数ベクトルから求めることを考える.
+\begin{equation}
+	{\cal I}(0)={\cal R} \cup \left\{ x=0\right\}
+	\label{eqn:def_I0}
+\end{equation}
+とし,ある$\fat{x}_0\in {\cal I}(0)$からの波動が,経路$\Gamma$を伝播して
+$\fat{x}$に到達したとする(図\ref{fig:fig12})．
+このとき，始点から終点までの間で生じる位相の変化は
+\begin{equation}
+	\phi(\fat{x},\omega)-\phi(\fat{x}_0,\omega)=
+	2\pi \int_{\Gamma} \fat{k}(\fat{s},\omega)\cdot d\fat{s}
+	\label{eqn:int_phi}
+\end{equation}
+で与えられる．ただし,$d\fat{s}$は$\Gamma$上の各点における微小接ベクトルで, 
+波動伝播は位相が増加する方向に起きることから，伝播経路$\Gamma$上では,
 \begin{equation}
 	\fat{k}\cdot d\fat{s}\geq 0 \, {\rm on} \, \Gamma 
 	\label{eqn:}
 \end{equation}
+であることが要請される．フェルマーの原理によれば，$\fat{x}_0$と$\fat{x}$を
+結ぶ経路$\Gamma$のなかで，実際に選ばれる経路は，位相の変化を最小にするものである．
+ただし，$\fat{x}$に到達する 波動伝播の起点$\fat{x}_0$が， $\cal I$(0)上のどこかにあるは
+前もってわからない．そこで，フェルマーの原理を適用するにあたり，
+$\fat{x}_0$と$\Gamma$は式(\ref{eqn:int_phi})を最小にするように選ばれると考える．
+すなわち，$\fat{x}$における位相は，
+\begin{equation}
+	\phi(\fat{x},\omega) - \phi(\fat{x}_0,\omega)
+	=
+	\min_{\left(\Gamma, \fat{x}_0\right)}
+	\int_\Gamma 2\pi \fat{k}(\fat{s},\omega) \cdot d\fat{s}
+	\label{eqn:Fermat}
+\end{equation}
+となると考える．これを周波数$\omega$で割れば，到達時間が次のように得られる．
+\begin{equation}
+	T_f(\fat{x},\omega) = \frac{\phi(\fat{x},\omega)}{\omega}
+	\label{eqn:def_Tf}
+\end{equation}
+実際には，観測波形は${\cal G}$でのみ与えられているため，$\Gamma$を
+格子点を結ぶ折れ線$\tilde \Gamma$で近似する(図\ref{fig:fig12})．
 \begin{equation}
 	\fat{k}\cdot d\fat{s}
 	=
@@ -105,17 +205,49 @@ $\fat{x}_0=(0,y)$に対して，
 	\right.
 	\label{eqn:}
 \end{equation}
+さらに，各々の$\fat{x}$について経路$\Gamma$を特定するのでなく，次のようにして
+$\cal G$での位相を決定する．
 
+はじめに，$\fat{x}\in {\cal G}\cap {\cal I}(0)$を一つ選ぶ．
+この点の位相を0とし，位相決定済み点としてリストに登録する．
+次に，$\fat{x}$に隣接する格子点をリストアップし，これを近傍点と呼ぶ．
+全ての近傍点には位相決定済みの隣接点が存在する．そこで， 式(\ref{eqn:phi_int})を離散化した
+\begin{equation}
+	\phi(\fat{x}+\Delta \fat{s}) -\phi(\fat{x}_0) = 2\pi \fat{k} \cdot \Delta \fat{s}
+	\label{eqn:inc_phase}
+\end{equation}
+を用い，近傍点の位相を計算して仮登録する．このとき，$\fat{x}$は位相決定済みの点に，
+$\fat{x}+\Delta \fat{s}$はその近傍点に取り，$\Delta \fat{s}$は両者の相対位置関係に
+応じて次のいずれかで与える．
+\begin{equation}
+	\Delta \fat{s} = (\pm \Delta x,\,0) \, or \, (0,\pm \Delta y)
+	\label{eqn:}
+\end{equation}
+なお，波数ベクトル$\fat{k}$は，式(\ref{eqn:kx_FD})あるいは式(\ref{eqn:ky_FD})で計算した
+ものを用いる．また， $\fat{k}\cdot \Delta \fat{s}<0$となる方向にある近傍点の位相は未定の
+ままとし，複数の位相決定済み点に隣接する近傍点には，それらの隣接点から計算された位相の
+中で最小のものを仮登録する．
+この作業を全ての近傍点で行った後，仮登録された位相の中で最小のものだけを採用して，
+その格子点を位相決定済みのリストに加える．
+更新された位相決定済み格子点に対し，近傍点のリストを作成して，位相の仮登録からの手順を繰り返す．
+以上の作業を新たに登録される近傍点がなくなるまで実行する．
+これら一連の位相決定作業を，${\cal G}\cap {\cal I}(0)$に含まれる全ての点を開始点として
+順次行えば，式(\ref{eqn:Fermat})で表される位相$\phi(\fat{x},\omega)$を求めることができる．
+なお，この方法では$\cal G$の全ての点で位相が決定できる保証は無く，与えられた波数ベクトル
+場によっては，位相が未決定の格子点が残される．しかしながら、これは位相決定方法の不備ではなく，
+波数ベクトル場の性質によるものと言え，観測データにはノイズが含まれ波数ベクトルが
+完全に正確には求まらないこと，また，波動伝播経路が観測面内に限定されず，厳密には
+３次元的であることを考えると，いくつかの点で位相が未決定のまま残ることは何ら不自然ことではない．
 \begin{figure}
 \begin{center}
-	\includegraphics[clip,scale=0.3]{Figs/pdf_kw_Al.eps}
+	\includegraphics[clip,scale=0.5]{Figs/pdf_kw_Al.eps}
 	\caption{波数ベクトルの(a)大きさと(b)方向の分布(アルミニウム供試体).}
 	\label{fig:fig8}
 \end{center}
 \end{figure}
 \begin{figure}
 \begin{center}
-	\includegraphics[clip,scale=0.3]{Figs/pdf_kw_bar.eps}
+	\includegraphics[clip,scale=0.5]{Figs/pdf_kw_bar.eps}
 	\caption{波数ベクトルの(a)大きさと(b)方向の分布(花崗岩供試体).}
 	\label{fig:fig9}
 \end{center}
@@ -127,31 +259,76 @@ $\fat{x}_0=(0,y)$に対して，
 	\label{fig:fig12}
 \end{center}
 \end{figure}
+以上の方法で計算した到達時間関数$T(\fat{x},\omega)$を周波数1MHzの場合について図-\ref{fig:fig10}に
+示す。アルミニウム供試体に対する結果では、到達時間はy方向にほぼ一定であり、期待通り、1次元的な
+伝播挙動が再現されている。なお、到達時間が未定のまま残された格子点に関しては
+到達時間を-1として表示している。そのため、到達時間未定の箇所は、図\ref{fig:fig10}において、孤立した
+紺のセルとして示されている。アルミニウム供試体に対する結果の中央付近でドットが欠けたように
+見えるのはこのためで、供試体表面の性状が悪く、この点でのみLDVで波形が十分な精度で計測できなかった
+ことが理由として考えられる。
+花崗岩供試体に対する結果では、
+$x$>0の方向に次第に到達時間が遅れる傾向ははっきりしているものの、
+到達時間は$y$軸方向に見たときに一様でなくゆらぎがある。また、到達時間未定の
+箇所もアルミニウム供したの場合に比べて多い。これは、計測上の問題が含まれる
+可能性もあるが、主として、強い散乱により波数ベクトルの方向が複雑かつ急激に変化する
+ことによるものと考えられる。
+
+このようにして得られた到達時間の見積を、頻度分布として整理した結果を
+図-\ref{fig:fig11}に示す。この図は、周波数帯域を
+\[
+	\Omega = \left[ 2\pi f_{min}, 2\pi f_{max} \right]
+\]
+とするとき、頻度分布:
+\begin{equation}
+	P_{{\cal G \cap I}(x)\times \Omega }(T_f; \Delta T)
+\end{equation}
+を示したものである。
+${\cal G \cap I}(x)$は,$x$同一の$x$座標をもつ格子点全体を表すため、
+各$x$における$T_f$の頻度分布を全ての帯域内の全ての周波数における
+データを使って求めたもので、図-\ref{fig:fig11}では
+縦軸を$x$座標、横軸を到達時間$T_f$として正規化頻度をカラーマップとして
+示している。
+位置におうじて到達時間が遅れる。
+アルミは、到達時間の分散はアルミでは位置によってほとんど変化しない。
+花崗岩では、位置が遠くなるにつれて、到達時間の分散が大きくなり、
+不確実性がます。
+花崗岩での到達時間の平均と平均プラスマイナス標準偏差が
+それぞれ白の実線と破線で示してある。
+アルミの場合はこれらの曲線は互いに重なりほとんど区別がつかないので
+この図には示していない。
 \begin{figure}
 \begin{center}
 	\includegraphics[clip,scale=0.4]{Figs/phi_R.eps}
-	\caption{アンラップした位相から計算した到達時間の空間分布. (a)アルミニウム供試体，(b)花崗岩供試体.いずれも周波数1.0MHzの結果.}
+	\caption{到達時間$T_f(\fat{x},\omega)$の空間分布. 
+	(a)アルミニウム供試体，(b)花崗岩供試体.いずれも周波数1.0MHzの結果.}
 	\label{fig:fig10}
 \end{center}
 \end{figure}
 \begin{figure}
 \begin{center}
-	\includegraphics[clip,scale=0.3]{Figs/tof_hist.eps}
-	\caption{到達時間の頻度分布. (a)アルミニウム供試体，(b)花崗岩供試体.}
+	\includegraphics[clip,scale=0.5]{Figs/tof_hist.eps}
+	\caption{到達時間$T_f$の正規化した頻度分布. (a)アルミニウム供試体，(b)花崗岩供試体.}
 	\label{fig:fig11}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+	\includegraphics[clip,scale=0.5]{Figs/tof1d.eps}
+	\caption{到達時間の平均$\bar T_f$と伝播距離の関係. }
+	\label{fig:fig12}
 \end{center}
 \end{figure}
 \begin{figure}
 \begin{center}
 	\includegraphics[clip,scale=0.5]{Figs/sigma_t.eps}
-	\caption{到達時間の標準偏差と伝播距離の関係. (a)アルミニウム供試体，(b)花崗岩供試体.}
-	\label{fig:fig11}
+	\caption{到達時間$T_f$の標準偏差$\delta T_f$と伝播距離の関係. (a)アルミニウム供試体，(b)花崗岩供試体.}
+	\label{fig:fig13}
 \end{center}
 \end{figure}
 \begin{figure}
 \begin{center}
 	\includegraphics[clip,scale=0.5]{Figs/sigma_y.eps}
-	\caption{到達距離の標準偏差と伝播時間の関係. (a)アルミニウム供試体，(b)花崗岩供試体.}
-	\label{fig:fig11}
+	\caption{到達距離$\bar{x}$の標準偏差$\delta \bar{x}$と伝播時間$T_f$の関係. (a)アルミニウム供試体，(b)花崗岩供試体.}
+	\label{fig:fig14}
 \end{center}
 \end{figure}
