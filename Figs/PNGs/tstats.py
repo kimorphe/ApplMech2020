@@ -97,6 +97,19 @@ if __name__=="__main__":
 
     #plt.legend()
 
+    fig3=plt.figure()
+    cx=fig3.add_subplot(111)
+    cx.plot(np.log(-Tf1.ycod), np.log(Tf1.tsig/Tf1.tave),"b-",label="alminium")
+    cx.plot(np.log(-Tf2.ycod), np.log(Tf2.tsig/Tf2.tave),"r-",label="bar")
+    cx.plot(np.log(-Tf3.ycod), np.log(Tf3.tsig/Tf3.tave),"g-",label="core")
+    cx.tick_params(labelsize=fsz)
+    cx.grid(True)
+    #cx.set_xlim([0,20])
+    #cx.set_ylim([0.1,1.])
+    #ax.set_xlabel("$\overline{x}$ [mm]",fontsize=fsz+2)
+    cx.set_xlabel("$x$ [mm]",fontsize=fsz+2)
+    cx.set_ylabel("$\delta T_f$ [$\mu$s]",fontsize=fsz+2)
+
     plt.show()
 
     fig1.savefig("delT_x.png",bbox_inches="tight")
