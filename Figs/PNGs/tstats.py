@@ -99,9 +99,14 @@ if __name__=="__main__":
 
     fig3=plt.figure()
     cx=fig3.add_subplot(111)
-    cx.plot(np.log(-Tf1.ycod), np.log(Tf1.tsig/Tf1.tave),"b-",label="alminium")
-    cx.plot(np.log(-Tf2.ycod), np.log(Tf2.tsig/Tf2.tave),"r-",label="bar")
-    cx.plot(np.log(-Tf3.ycod), np.log(Tf3.tsig/Tf3.tave),"g-",label="core")
+    cx.set_xscale('log')
+    cx.set_yscale('log')
+    #cx.plot(np.log(-Tf1.ycod), np.log(Tf1.tsig/Tf1.tave),"b-",label="alminium")
+    #cx.plot(np.log(-Tf2.ycod), np.log(Tf2.tsig/Tf2.tave),"r-",label="bar")
+    #cx.plot(np.log(-Tf3.ycod), np.log(Tf3.tsig/Tf3.tave),"g-",label="core")
+    cx.plot((-Tf1.ycod), (Tf1.tsig/Tf1.tave),"b-",label="alminium")
+    cx.plot((-Tf2.ycod), (Tf2.tsig/Tf2.tave),"r-",label="bar")
+    cx.plot((-Tf3.ycod), (Tf3.tsig/Tf3.tave),"g-",label="core")
     cx.tick_params(labelsize=fsz)
     cx.grid(True)
     #cx.set_xlim([0,20])
@@ -110,8 +115,30 @@ if __name__=="__main__":
     cx.set_xlabel("$x$ [mm]",fontsize=fsz+2)
     cx.set_ylabel("$\delta T_f$ [$\mu$s]",fontsize=fsz+2)
 
+
+    ylog=np.log(-Tf1.ycod[1:])
+    slog=np.log(Tf1.tsig[1:]/Tf1.tave[1:])
+
+    deg=1
+
+    PA=np.polyfit(ylog,slog,deg)
+
+    ylog=np.log(-Tf2.ycod[1:])
+    slog=np.log(Tf2.tsig[1:]/Tf2.tave[1:])
+    PB=np.polyfit(ylog,slog,deg)
+
+    ylog=np.log(-Tf3.ycod[1:])
+    slog=np.log(Tf3.tsig[1:]/Tf2.tave[1:])
+    PC=np.polyfit(ylog,slog,deg)
+
+    print("P(alminium), m=",PA,-1./PA[0])
+    print("P(block), m=",PB,-1./PB[0])
+    print("P(core), m=",PC,-1./PC[0])
+
+
     plt.show()
 
     fig1.savefig("delT_x.png",bbox_inches="tight")
     fig2.savefig("delT_x_nrm.png",bbox_inches="tight")
+    fig3.savefig("delT_log.png",bbox_inches="tight")
 

@@ -52,25 +52,30 @@ A STUDY ON THE PROPAGATION CHARACTERISTICS OF SURFACE WAVES IN A GRANITE BASED O
 %
 \abstract{
 \small
-本研究は，不飽和多孔質体における物質拡散挙動を調べることを目的に，ランダムウォークをベースとした
-数値拡散解析手法の開発を行ったものである．ここで提案する方法では，
-固相粒子を充填して作成した周期多孔質構造のユニットセルにおいて，
-モンテカルロ法を用いて界面エネルギーが極小値をとるように間隙水を配置する．
-作成した数値不飽和多孔質媒体は，液相を拡散媒体としたランダムウォークによる
-物質拡散解析に用いる．ランダムウォーク・シミュレーションで得られた
-拡散粒子変位の時刻歴から，拡散係数と平均２乗変位に関する時間のべき指数を評価し，
-多孔質媒体が示すマクロな拡散特性を定量化する．本稿では，以上の方法で２次元拡散解析を行い，
-飽和度や，固相粒子の形状と粒径分布が不飽和多孔質体のマクロ拡散に与える影響を調べた．
-その結果，主として粒径分布が拡散係数の大きさに，固相粒子の充填構造が異常拡散の程度に
-寄与することが明らかとなった．
+本研究は，ランダムな非均質媒体における表面波の伝播挙動を、超音波計測と波形解析によって調べたものである。
+実験には、典型的な結晶質岩である花崗岩を用い、線集束型の圧電探触子で励起した表面波による振動を、
+レーザードップラー振動計で計測する。計測波形の解析は、フーリエ変換で求めた位相の空間分布を用いて行い、
+波形観測領域における波数ベクトル場を算出する。その結果得られた波数ベクトルを経路積分して到達時間に変換し、
+観測点毎に到達時間を求める。到達時間は、周波数と透過軸直角方向の位置とに関するアンサンブルとすることで、
+その頻度分布を求める。このようにして得た頻度分布を用いて到達時間と到達距離のゆらぎを調べる。
+以上の結果、花崗岩供試体では、到達時間のゆらぎは到達時間とともに増大するが、平均到達時間で正規化すれば
+概ね透過距離の-1/2乗に比例して減少することが明らかとなった。このことは、不確実性を考慮した上で、
+非均質材における波動伝播をモデル化する上で有用な知見を与える。
 }
 %
-\keywords{unsaturated porous media， Monte Carlo method， 
-pore water distribution, random walk, anomalous diffusion}
+\keywords{random media, heterogeneity, ultrasonic wave，uncertainity, travel time}
 %
 \endabstract{% Yes blank line
 \normalsize
-This study investigates the propagation characteristics of high frequency surface wave in a granite block by ultrasonic measurement. In the experiment, a surface wave field excited by a line-focus transducer is scanned finely over a rectangular aperture with a laser Doppler vibrometer. From the measured waveforms, the spatial distribution of Fourier phase is reconstructed, and the structure of the wave front configuration is investigated. Due to the heterogeneity of the granite, we find the fluctuation of the wave front measured by the distribution of spatial gradient of phase. The intensity of the fluctuation is quantified as a local wavenumber vector. As the result it is found that the granite sample can be characterized by a stochastic wave number whose probability density is frequency dependent, asymmetric and non-Gaussian with a finite support. 
+This study investigates the propagation characteristics of surface wave traveling in a random heterogenious medium. 
+For this purpose, ultrasonic measurements and a detailed waveform analysis are perforemd using a granite block 
+as a typical, randomly heterogenious, crystralline medium. 
+A line-focus transducer is used to excite the ultrasonic waves, while a laser Doppler vibrometer is used to 
+pick-up the ultrasonic motion on the surface of the granite sample.
+The succsive waveform analysis is made in the frequency domain focusing on fields of phase and local wavenumber vector.
+The travel-time function is then reconstructed by path-integrating the wavenumbe vector.
+The ensemble of travel times are evaluated over the pependicalr distance from the beam axis and the 
+frequency bandwidth, 
 }
 %
 % \titlepagecontrol{1}
@@ -91,52 +96,29 @@ This study investigates the propagation characteristics of high frequency surfac
 	\input{2_measurement}
 \section{計測結果}
 	\input{3_data}
-\section{データ解析と考察 }
+\section{到達時間と位置に関する解析 }
 	\input{4_processing}
 \section{まとめ}
-本研究では，花崗岩中を伝播する表面波を計測して位相の空間分布を求め，波数ベクトルの確率密度分布を推定した．その結果，媒体の不均質性によって波面が屈曲すること，波数ベクトルの確率密度分布は周波数に強く依存すること，高周波になるにつれ確率密度がブロードになること，波数は非対称かつ有限な幅の非ガウス的な確率分布に従うことが明らかとなった．今後は，波数ベクトルの空間分布構造とその周波数依存性，岩石物性との関係について調べることが，工学的な応用を展開する上での課題となる．
-
-本研究では，2次元不飽和多孔質体モデルを用いたランダムウォークによる拡散解析を行い，
-間隙構造や水分量が分子拡散挙動に与える影響について調べた．この方法では，
-任意の形状と粒径分布をもつ固相粒子で構成された多孔質体を扱うことができ，
-間隙構造や間隙率，飽和度や粒子表面の濡れ性を自由に設定したモデルを用いて
-拡散解析を行うことができる．また，ランダムウォークによるシミュレーション結果から，
-一般化された拡散係数と，平均2乗変位のべき指数を求めることで，異常拡散の程度も
-定量的に評価することができる．本稿では，上記の方法により4種類の多孔質構造モデルに
-ついて拡散シミュレーションを行った結果，以下に示す知見を得ることができた．
-\begin{itemize}
-\item
-	多孔質体では，飽和度と間隙率に応じて拡散経路が制限され，
-	マクロ拡散係数は液相の拡散係数よりも小さくなる．ただしその低減率は，
-	間隙形状の影響を受ける．
-\item
-	拡散経路が屈曲することにより，マクロスケールでの拡散は遅い異常拡散となり，
-	通常の拡散方程式には従わなくなる．
-\item
-	固相粒子のアスペクト比が0.4$\sim$1.0程度であれば，
-	粒子形状が拡散挙動に与える影響は小さい．
-\item
-	均一な粒径の固相粒子が不規則に充填された多孔質構造では，
-	多分散系の固相粒子で構成された多孔質構造に比べて小さなマクロ拡散係数をもつ．
-\item
-	%平均2乗変位のべき指数で表される異常拡散の程度は，
-	%飽和度に対して単調に減少する．	
-	平均2乗変位のべき指数$\alpha$は飽和度に対して単調に増加するが，
-	通常拡散を意味する1を超えることはない．すなわち，異常拡散の程度は飽和度に対して単調に減少する．
-\item
-	異常拡散の程度は，固相粒子配置が不規則で飽和度が低い場合に大きい．
-	一方，粒径分布や粒子形状が異常拡散の程度に当てる影響は顕著でない．
-	このことは，拡散経路の屈曲が異常拡散の主たる原因であることを示唆する．
-\end{itemize}
-以上は，間隙スケールの形状を考慮した拡散解析を行うことで，不飽和多孔質体に
-おける拡散挙動の理解を深めるために有用な情報が得られることを示している．\\
-\hspace{\parindent}
-今後は，同様な方法を３次元問題に適用し，実験データの解釈に利用することが課題となる．
-そのためには，各計算過程（固相粒子のパッキング，間隙水配置の決定，ランダムウォーク）
-の効率化を行うことも必要となる．また，本手法を間隙水の移流を考慮した拡散解析に
-拡張し，機械的分散のメカニズムを調べること，拡散物質の吸着や拡散物質の
-反応を考慮すること，ランダムウォークベースのアップスケーリング手法を考案することも
-今後の重要な課題であると考えられる．
+本研究では、非均質材における波動伝播特性を理解することを目的に、
+花崗岩供試体を用いた超音波計測の結果から表面波の到達時間と位置の関係
+を調べた。到達時間の評価は、計測波形のフーリエ位相から求めた波数ベクトル場を
+経路積分することによって行う。受信点位置と周波数に関するアンサンブルから
+到達時間の頻度分布を得ることで、波動の到達位置と到達時間の平均と偏差を
+評価した。この方法では、波形の立ち上がりやピークを読むといった作業は必要なく、
+全ての計算は波数や位相等の明確に定義された量で行うことができる。
+以上の方法で、到達時間と到達位置の同時確率分布を推定したところ、均質材である
+アルミニウム供試体では、到達時間のゆらぎは、到達位置にほとんど依存しないが、
+花崗岩供試体では、到達位置が遠方になるに従い、多重散乱の影響を受け、
+到達時刻のゆらぎが単調に増加することが示された。しかしながら、
+平均到達時間で正規化した標準偏差で、到達時間のゆらぎを見ると、距離に
+応じて単調減少を示し、その割合は、距離の$-1/2$乗に比例することが見出された。
+今後は、到達時間と位置の同時確率分布の詳細な分布形状を調べること、
+分布を特徴付ける平均や標準偏差の物理的な起源について明らかにすることが課題となる。
+特に後者は、非均質材における探査や非破壊検査への応用の上で重要な課題である。
+また、ここでは到達時間に関する議論だけを行ったが、到達時間のゆらぎと散乱減衰の
+関係付けや、それに基づく減衰モデリングは非均質材中の波動伝播挙動をより
+深く理解する上での重要なテーマになると考えられる。
+%本研究では，花崗岩中を伝播する表面波を計測して位相の空間分布を求め，波数ベクトルの確率密度分布を推定した．その結果，媒体の不均質性によって波面が屈曲すること，波数ベクトルの確率密度分布は周波数に強く依存すること，高周波になるにつれ確率密度がブロードになること，波数は非対称かつ有限な幅の非ガウス的な確率分布に従うことが明らかとなった．今後は，波数ベクトルの空間分布構造とその周波数依存性，岩石物性との関係について調べることが，工学的な応用を展開する上での課題となる．
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\newpage
