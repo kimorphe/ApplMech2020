@@ -1,5 +1,3 @@
-# Readme 
-git add Src/Readme.txt
 # Git commands
 git add git_cmd.sh
 # Latex Source 
@@ -9,8 +7,6 @@ git add *.cls
 git add *.txt
 git add Figs/*.svgz
 git add Figs/PNGs/*.py
-# Visualization
-git add Src/*.py
 # Makefile
 git add makefile
 git add makefile2
